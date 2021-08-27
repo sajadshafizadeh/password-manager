@@ -21,7 +21,7 @@ class AuthController extends Controller
         // To set the guard
         auth()->setDefaultDriver('api');
 
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'logout']]);
     }
 
 
@@ -85,9 +85,11 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        $msg = "Successfully logged out";
 
-        return response()->json(['message' => 'Successfully logged out']);
+        auth()->check() ? auth()->logout() : $msg = "Given token is wrong";
+        
+        return response()->json([$msg => '']);
     }
 
     /**
