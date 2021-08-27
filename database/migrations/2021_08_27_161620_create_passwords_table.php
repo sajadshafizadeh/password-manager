@@ -16,10 +16,12 @@ class CreatePasswordsTable extends Migration
         Schema::create('passwords', function (Blueprint $table) {
             $table->id();
             $table->string('username');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('type_id');
             $table->timestamps();
 
             $table->unique(['username', 'type_id']);
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('type_id')->references('id')->on('password_types');
         });
     }

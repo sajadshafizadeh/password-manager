@@ -1,5 +1,5 @@
 
-Installation & Getting started steps:
+### Installation & Getting started steps:
 
 1. Download the project
 2. Run `compsoer install`
