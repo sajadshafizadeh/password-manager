@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "526e8179-9ee5-403a-98b7-9b490ac09e4e",
+		"name": "parspack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register a new user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTQuNS4yMDUuMTA0XC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjAzNjMwOTI3LCJleHAiOjE2MDM2MzQ1MjcsIm5iZiI6MTYwMzYzMDkyNywianRpIjoiNnE3VUxUY3lrVnZ0SkVURSIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.NP73pqSs_Ilhke2IHipEDJi_I2P8GiR7QTIRDCoS1hE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Sajad",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "vip.saj.72@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "sa123456",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "sa123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get login token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "vip.saj.71@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "sa123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "vip.saj.71@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "sa123456",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh the token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTQuNS4yMDUuMTA0XC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjAzNjMwOTI3LCJleHAiOjE2MDM2MzQ1MjcsIm5iZiI6MTYwMzYzMDkyNywianRpIjoiNnE3VUxUY3lrVnZ0SkVURSIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.NP73pqSs_Ilhke2IHipEDJi_I2P8GiR7QTIRDCoS1hE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/auth/refresh",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a directory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTQuNS4yMDUuMTA0XC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjAzNjI4NjI2LCJleHAiOjE2MDM2MzIyMjYsIm5iZiI6MTYwMzYyODYyNiwianRpIjoidUZrTEtjTlZjdFY3TllGZiIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.-hH8VwRgBYxZPBRHL-BbTb1u-1voVyzX-a5vnMy-U2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "dir_name",
+							"value": "ttt",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/create-dir",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"create-dir"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTQuNS4yMDUuMTA0XC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjAzNjI4NjI2LCJleHAiOjE2MDM2MzIyMjYsIm5iZiI6MTYwMzYyODYyNiwianRpIjoidUZrTEtjTlZjdFY3TllGZiIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.-hH8VwRgBYxZPBRHL-BbTb1u-1voVyzX-a5vnMy-U2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "file_name",
+							"value": "ttt.txt",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/create-file",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"create-file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of dirs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTQuNS4yMDUuMTA0XC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjAzNjI4NjI2LCJleHAiOjE2MDM2MzIyMjYsIm5iZiI6MTYwMzYyODYyNiwianRpIjoidUZrTEtjTlZjdFY3TllGZiIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.-hH8VwRgBYxZPBRHL-BbTb1u-1voVyzX-a5vnMy-U2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/get-list-of-dirs",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"get-list-of-dirs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of files",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTQuNS4yMDUuMTA0XC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjAzNjI4NjI2LCJleHAiOjE2MDM2MzIyMjYsIm5iZiI6MTYwMzYyODYyNiwianRpIjoidUZrTEtjTlZjdFY3TllGZiIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.-hH8VwRgBYxZPBRHL-BbTb1u-1voVyzX-a5vnMy-U2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://194.5.205.104/api/get-list-of-files",
+					"protocol": "http",
+					"host": [
+						"194",
+						"5",
+						"205",
+						"104"
+					],
+					"path": [
+						"api",
+						"get-list-of-files"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
