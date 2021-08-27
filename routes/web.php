@@ -22,10 +22,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
 /* 
 |--------------------------------------------------------------------------
 | Common routes
 |--------------------------------------------------------------------------
  */
 
+Route::resource('password-types', 'PasswordTypesController');
+Route::resource('passwords', 'PasswordsController');

@@ -37,3 +37,6 @@ Route::group([
 | Common routes
 |--------------------------------------------------------------------------
  */
+
+Route::resource('password-types', 'PasswordTypesController');
+Route::resource('passwords', 'PasswordsController');
