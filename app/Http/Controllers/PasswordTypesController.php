@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PasswordTypes;
 
 class PasswordTypesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class PasswordTypesController extends Controller
      */
     public function index()
     {
-        //
+        return PasswordTypes::orderBy('id')->paginate();
     }
 
     /**
@@ -23,7 +30,7 @@ class PasswordTypesController extends Controller
      */
     public function create()
     {
-        //
+        //TODO: Must be implemented for the client interface
     }
 
     /**
@@ -56,7 +63,7 @@ class PasswordTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        //TODO: Must be implemented for the client interface
     }
 
     /**

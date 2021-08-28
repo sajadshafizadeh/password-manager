@@ -16,6 +16,7 @@ class CreatePasswordsTable extends Migration
         Schema::create('passwords', function (Blueprint $table) {
             $table->id();
             $table->string('username');
+            $table->string('password')->comment('Encrypted by the system-self-defined algorithm');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('type_id');
             $table->timestamps();

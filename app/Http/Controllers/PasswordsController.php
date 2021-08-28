@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Passwords;
 
 class PasswordsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,15 @@ class PasswordsController extends Controller
      */
     public function index()
     {
-        //
+        // To get the user id
+        $user_id = Auth::id();
+        $res = Passwords::where('user_id', $user_id)
+                        ->orderBy('id')
+                        ->select(['passwords.id', 'username', 'password', 'pt.id as type_id', 'pt.name as type name'])
+                        ->join('password_types as pt', 'pt.id', 'passwords.id')
+                        ->paginate();
+
+        return response()->json($res);
     }
 
     /**
@@ -23,7 +39,7 @@ class PasswordsController extends Controller
      */
     public function create()
     {
-        //
+        //TODO: Must be implemented for the client interface
     }
 
     /**
@@ -81,4 +97,5 @@ class PasswordsController extends Controller
     {
         //
     }
+
 }
