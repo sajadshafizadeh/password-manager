@@ -26,7 +26,7 @@ class Passwords extends Model
      */
     public function setPasswordAttribute($value)
     {
-        return $this->encrypt($value);
+        return $this->attributes['password'] = $this->encrypt($value);
     }
 
     /**

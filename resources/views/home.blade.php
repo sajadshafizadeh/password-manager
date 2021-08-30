@@ -15,10 +15,10 @@
                     @endif
 
                     <h3>Available features on your panel</h3>
-                    <p>Use & Enjoy!</p>
+                    <p>Use the APIs & Enjoy!</p>
 
                     <ul>
-                        <li><a href="/running-server-processes">List of password types</a></li>
+                        <!-- <li></li> -->
                     </ul>
                 </div>
             </div>

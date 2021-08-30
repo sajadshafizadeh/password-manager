@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Passwords;
+use Validator;
+use Exception;
 
 class PasswordsController extends Controller
 {
@@ -51,7 +53,34 @@ class PasswordsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $validation_errors = $inserted = null;
+
+        try {
+
+            // Validationg
+            if(!empty($validation_errors = $this->do_validation($request)))
+                throw new Exception;
+
+            // Inserting
+            $inserted = Passwords::create([
+                "username" => $request->username,
+                "password" => $request->password,
+                "user_id" => Auth::id(),
+                "type_id" => $request->type_id
+            ]);
+
+            // Check inserting status 
+            if ($inserted) $msg = "The new password '". $request->username ."' succesfully inserted";
+            else throw new Exception;
+
+
+            // Error handling
+        } catch (Exception $e){
+                $msg = $e->getCode() === "23000" ? "Integrity constraint violation - Duplicate entry" : $e->getMessage();
+        } 
+
+        // Response
+        return response()->json(["message" => $msg, "errors" => $validation_errors, "data" => $inserted]);
     }
 
     /**
@@ -62,7 +91,9 @@ class PasswordsController extends Controller
      */
     public function show($id)
     {
-        //
+        $res = Passwords::select('passwords.id', 'username', 'password', 'pt.name as type_name', 'passwords.created_at')
+                ->join('password_types as pt', 'pt.id', 'passwords.type_id')->find($id);
+        return response()->json($res);
     }
 
     /**
@@ -73,7 +104,7 @@ class PasswordsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //TODO: Must be implemented for the client interface
     }
 
     /**
@@ -85,7 +116,42 @@ class PasswordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validation_errors = $updated = null;
+
+        try {
+
+            // Validationg
+            if(!empty($validation_errors = $this->do_validation($request)))
+                throw new Exception;
+
+            // Finding
+            $obj = Passwords::find($id);
+            if(empty($obj)) throw new Exception("404 - Not Found");
+
+            // Updating
+            $updated = $obj->update([
+                "username" => $request->username,
+                "password" => $request->password,
+                "user_id" => Auth::id(),
+                "type_id" => $request->type_id
+            ]);
+
+            // Check inserting status 
+            if ($updated){
+                $msg = "The password '". $request->username ."' succesfully updated";
+                // Get the updated object
+                $updated = $obj->refresh();
+            }
+            else throw new Exception;
+
+
+            // Error handling
+        } catch (Exception $e){
+                $msg = $e->getCode() === "23000" ? "Integrity constraint violation - Duplicate entry" : $e->getMessage();
+        } 
+
+        // Response
+        return response()->json(["message" => $msg, "errors" => $validation_errors, "data" => $updated]);
     }
 
     /**
@@ -96,7 +162,49 @@ class PasswordsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+
+            // Finding
+            $obj = Passwords::find($id);
+            if(empty($obj)) throw new Exception("404 - Not Found");
+            
+            // Deleting
+            $obj->delete();
+            $msg = "succesfully deleted";
+
+        } catch (Exception $e) {
+            // To detect if this is referenced as the parrent of sth
+            $msg = $e->getCode() === "23000" ? "Relation Constraint Violation!" : $e->getMessage();
+        }
+
+        return response()->json(["message" => $msg, "errors" => null, "data" => null]);
     }
+
+    /**
+     * To validate data entry 
+     *
+     * @param  Collection  $requests
+     * @return Array (errors)
+     */
+
+    public function do_validation($reqs){
+
+        $validator = Validator::make($reqs->all(), [
+                    'username' => 'required|max:255|string',
+                    'password' => [ 'required',
+                                    'min:8',
+                                    'string',
+                                    'confirmed',
+                                    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'],
+                    'type_id' => 'required|max:12|integer',
+                ]);
+
+        if ($validator->fails()) {
+            $validation_errors = $validator->errors()->all();  
+        }
+
+        return $validation_errors ?? [];
+    }
+
 
 }

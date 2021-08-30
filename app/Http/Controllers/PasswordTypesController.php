@@ -121,7 +121,7 @@ class PasswordTypesController extends Controller
             // Updating
             $updated = $obj->update(["name" => $request->name]);
 
-            // Check inserting status 
+            // Check updating status 
             if ($updated){
                 $msg = "The password type '". $request->name ."' succesfully updated";
                 // Get the updated object
