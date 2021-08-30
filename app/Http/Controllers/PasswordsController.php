@@ -9,9 +9,10 @@ use App\Passwords;
 class PasswordsController extends Controller
 {
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        // To know the request has came from either api or web route files 
+        $request->is('api/*') ? $this->middleware('auth:api') : $this->middleware('auth');
     }
 
     /**
@@ -50,7 +51,7 @@ class PasswordsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
